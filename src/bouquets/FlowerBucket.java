@@ -4,6 +4,7 @@ import flowers.Flower;
 import flowers.FlowerSpec;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class FlowerBucket implements Item {
     private int defaultSize = 10;
@@ -13,6 +14,18 @@ public class FlowerBucket implements Item {
 
     public String getDescription(){
         return "";
+    }
+
+    public int bucket_search_flower(Flower flower) {
+        int counter = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == null)
+                continue;
+            if (Objects.equals(a[i].getClass().toString(), flower.getClass().toString())) {
+                counter++;
+            }
+        }
+        return counter;
     }
 
     public void addFlower(Flower nw) {
@@ -62,6 +75,17 @@ public class FlowerBucket implements Item {
         }
         return sum;
     }
+
+    @Override
+    public Flower[] getFlower() {
+        return a;
+    }
+
+    @Override
+    public int size() {
+        return 0;
+    }
+
     public Flower[] selectFlowersByItsLength(double start, double end) {
         int tmpSize = 0;
         for (int i = 0; i < insertIndex; i++) {
