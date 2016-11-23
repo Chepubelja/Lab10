@@ -1,4 +1,6 @@
 import DeliveryStrategy.DHLDeliveryStrategy;
+import Observer.ChamomileSupplierObserver;
+import Observer.TulipSupplierObserver;
 import PaymentStrategy.PayPalPaymentStrategy;
 import bouquets.BasketDecorator;
 import bouquets.FlowerBucket;
