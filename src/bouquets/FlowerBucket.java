@@ -1,6 +1,7 @@
 package bouquets;
 
 import flowers.Flower;
+import flowers.FlowerColor;
 import flowers.FlowerSpec;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class FlowerBucket implements Item {
     private int insertIndex = 0; // insert, or better create method length()
     private Flower[] a = new Flower[defaultSize];
 
-    public String getDescription(){
+    public String getDescription() {
         return "";
     }
 
@@ -31,33 +32,41 @@ public class FlowerBucket implements Item {
     public void addFlower(Flower nw) {
         checkSize();
         a[insertIndex] = nw;
-        insertIndex ++;
+        insertIndex++;
+    }
+    public void addFlowers(Flower flower, FlowerColor color, int amount){
+        checkSize();
+        for (int i = 0; i < amount; i++)
+            a[insertIndex] = flower;
+        insertIndex++;
     }
 
-    private void checkSize(){
+    private void checkSize() {
         if (insertIndex == defaultSize - 1) {
             defaultSize *= 2;
             Flower[] b = new Flower[defaultSize];
-            for (int i = 0; i <= insertIndex; i ++) {
+            for (int i = 0; i <= insertIndex; i++) {
                 b[i] = a[i];
             }
             a = b;
         }
     }
+
     public void sortByPrice() {
-        for (int i = 1; i < insertIndex; i ++) {
+        for (int i = 1; i < insertIndex; i++) {
             Flower tmp = a[i];
             int j = i - 1;
             while (j >= 0 && (a[i].price() < a[j].price())) {
                 a[i] = a[j];
-                j --;
+                j--;
             }
             a[j + 1] = tmp;
         }
     }
+
     public String toString() {
         String s = "";
-        for (int i = 0; i < insertIndex; i ++) {
+        for (int i = 0; i < insertIndex; i++) {
             s += a[i].toString() + "\n";
         }
         return s;
@@ -65,11 +74,10 @@ public class FlowerBucket implements Item {
 
     public double price() {
         double sum = 0;
-        for (Flower flower: a) {
+        for (Flower flower : a) {
             if (flower != null) {
                 sum += flower.price();
-            }
-            else {
+            } else {
                 break;
             }
         }
@@ -89,22 +97,22 @@ public class FlowerBucket implements Item {
     public Flower[] selectFlowersByItsLength(double start, double end) {
         int tmpSize = 0;
         for (int i = 0; i < insertIndex; i++) {
-            if (a[i].getLength() <= end && a[i].getLength() >= start ) {
-                tmpSize ++;
+            if (a[i].getLength() <= end && a[i].getLength() >= start) {
+                tmpSize++;
             }
         }
         Flower[] tmpPart = new Flower[tmpSize];
         int tmpIndex = 0;
         for (int i = 0; i < insertIndex; i++) {
-            if (a[i].getLength() <= end && a[i].getLength() >= start ) {
+            if (a[i].getLength() <= end && a[i].getLength() >= start) {
                 tmpPart[tmpIndex] = a[i];
-                tmpIndex ++;
+                tmpIndex++;
             }
         }
         return tmpPart;
     }
 
-    public ArrayList<Flower> getFlower(FlowerSpec type1){
+    public ArrayList<Flower> getFlower(FlowerSpec type1) {
 
         ArrayList<Flower> tmp = new ArrayList<Flower>();
         for (int i = 0; i < insertIndex; i++) {
@@ -116,7 +124,7 @@ public class FlowerBucket implements Item {
         return tmp;
     }
 
-    public Flower searchFlower(Flower flower){
+    public Flower searchFlower(Flower flower) {
 
         ArrayList<Flower> tmp = new ArrayList<Flower>();
         for (int i = 0; i < insertIndex; i++) {

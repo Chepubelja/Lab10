@@ -1,8 +1,8 @@
 package flowers;
 
 public class TulipFlower extends Flower {
-    public TulipFlower(FlowerType type, FlowerColor color, double length, boolean fresh, double price) {
-        super(type, color, length, fresh, price);
+    public TulipFlower(FlowerSpec spec, FlowerColor color) {
+        super(spec, color);
     }
     public String getName(Flower flower){
         return "TulipFlower";

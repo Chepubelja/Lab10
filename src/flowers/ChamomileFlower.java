@@ -1,8 +1,8 @@
 package flowers;
 
 public class ChamomileFlower extends Flower{
-    public ChamomileFlower(FlowerType type, FlowerColor color, double length, boolean fresh, double price) {
-        super(type, color, length, fresh, price);
+    public ChamomileFlower(FlowerSpec spec, FlowerColor color) {
+        super(spec, color);
     }
     public String getName(Flower flower){
         return "ChamomileFlower";

@@ -1,12 +1,12 @@
 package flowers;
 
-public abstract class Flower {
+public class Flower {
     protected FlowerSpec spec;
     protected FlowerColor color;
 
-    public Flower(FlowerType type, FlowerColor color, double length, boolean fresh,  double price){
+    public Flower(FlowerSpec spec, FlowerColor color){
         this.color = color;
-        this.spec = new FlowerSpec(type, length, fresh, price);
+        this.spec = new FlowerSpec(spec.type, spec.length, spec.fresh, spec.price);
     }
 
     public double price() {
